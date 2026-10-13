@@ -34,7 +34,7 @@ public class Complex_number {
 
     public Complex_number multiply(Complex_number another) {
         double newReal = (this.real * another.getReal()) - (this.imaginary * another.getImaginary());
-        double newImaginary = (this.real * another.getImaginary()) - (this.imaginary * another.getReal());
+        double newImaginary = (this.real * another.getImaginary()) + (this.imaginary * another.getReal());
         return new Complex_number(newReal, newImaginary);
     }
 

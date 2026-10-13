@@ -84,6 +84,39 @@ public class Matrix {
         return result;
     }
 
+    public Complex_number determinant() {
+        if (this.rows != this.cols) {
+            throw new IllegalArgumentException("Задана не квадратная матрица!");
+        }
+        return calcDeterminant(this.nums);
+    }
+
+    private Complex_number calcDeterminant(Complex_number[][] matrix) {
+        int n = matrix.length;
+        if (n == 1) {
+            return matrix[0][0];
+        }
+        if (n == 2) {
+            return matrix[0][0].multiply(matrix[1][1]).subtract(matrix[0][1].multiply(matrix[1][0]));
+        }
+        Complex_number det = new Complex_number();
+        for (int i = 0; i < n; i++) {
+            Complex_number[][] Minor = new Complex_number[n - 1][n - 1];
+            for (int j = 1; j < n; j++) {
+                int subCol = 0;
+                for (int k = 0; k < n; k++) {
+                    if (k != i) {
+                        Minor[j - 1][subCol++] = matrix[j][k];
+                    }
+                }
+            }
+            Complex_number sign = (i % 2 == 0) ? new Complex_number(1, 0) : new Complex_number(-1, 0);
+            Complex_number tail = matrix[0][i].multiply(sign).multiply(calcDeterminant(Minor));
+            det = det.add(tail);
+        }
+        return det;
+    }
+
     public void print() {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
