@@ -48,4 +48,15 @@ public class Complex_number {
         return new Complex_number(newReal, newImaginary);
     }
 
+    public String toString() {
+        if (imaginary == 0) {
+            return String.valueOf(real);
+        }
+        if (imaginary > 0) {
+            return real + " + " + imaginary + "i";
+        } else {
+            return real + " - " + Math.abs(imaginary) + "i";
+        }
+    }
+
 }
