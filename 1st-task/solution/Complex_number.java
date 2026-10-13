@@ -26,4 +26,9 @@ public class Complex_number {
         return new Complex_number(newReal, newImaginary);
     }
 
+    public Complex_number subtract(Complex_number another) {
+        double newReal = this.real - another.getReal();
+        double newImaginary = this.imaginary - another.getImaginary();
+        return new Complex_number(newReal, newImaginary);
+    }
 }
