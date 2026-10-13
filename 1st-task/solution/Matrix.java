@@ -117,6 +117,45 @@ public class Matrix {
         return det;
     }
 
+    public Matrix inverse() {
+        Complex_number det = this.determinant();
+        if (det.getReal() == 0 && det.getImaginary() == 0) {
+            throw new ArithmeticException("Не существует обратной матрицы!");
+        }
+        Matrix extra = new Matrix(this.rows, this.cols);
+        for (int i = 0; i < this.rows; i++) {
+            for (int j = 0; j < this.cols; j++) {
+                Complex_number[][] Minor = new Complex_number[this.rows - 1][this.cols - 1];
+                int minorR = 0;
+                for (int r = 0; r < this.rows; r++) {
+                    if (r != i) {
+                        int minorC = 0;
+                        for (int c = 0; c < this.cols; c++) {
+                            if (c != j) {
+                                Minor[minorR][minorC++] = this.nums[r][c];
+                            }
+                        }
+                        minorR++;
+                    }
+                }
+                Complex_number sign = ((i + j) % 2 == 0) ? new Complex_number(1, 0) : new Complex_number(-1, 0);
+                extra.setElement(i, j, sign.multiply(calcDeterminant(Minor)));
+            }
+        }
+        Matrix transposedExtra = extra.transpose();
+        Matrix result = new Matrix(this.rows, this.cols);
+        for (int i = 0; i < this.rows; i++) {
+            for (int j = 0; j < this.cols; j++) {
+                result.setElement(i, j, transposedExtra.getElement(i, j).divide(det));
+            }
+        }
+        return result;
+    }
+
+    public Matrix divine(Matrix another) {
+        return this.multiply(another.inverse());
+    }
+
     public void print() {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {

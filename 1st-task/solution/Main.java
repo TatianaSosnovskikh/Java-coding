@@ -14,8 +14,8 @@ public class Main {
         mat1.setElement(2, 0, num3);
         mat1.setElement(2, 1, num2);
         mat1.setElement(2, 2, num3);
-        Complex_number num = mat1.determinant();
+        Matrix mat2 = mat1.divine(mat1);
 
-        System.out.println(num.toString());
+        mat2.print();
     }
 }
