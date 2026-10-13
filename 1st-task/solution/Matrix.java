@@ -41,6 +41,32 @@ public class Matrix {
         return result;
     }
 
+    public Matrix add(Matrix another) {
+        if (this.rows != another.getRows() || this.cols != another.getCols()) {
+            throw new IllegalArgumentException("Не совпадают размеры матриц!");
+        }
+        Matrix result = new Matrix(this.rows, this.cols);
+        for (int i = 0; i < this.rows; i++) {
+            for (int j = 0; j < this.cols; j++) {
+                result.setElement(i, j, this.nums[i][j].add(another.getElement(i, j)));
+            }
+        }
+        return result;
+    }
+
+    public Matrix subtract(Matrix another) {
+        if (this.rows != another.getRows() || this.cols != another.getCols()) {
+            throw new IllegalArgumentException("Не совпадают размеры матриц!");
+        }
+        Matrix result = new Matrix(this.rows, this.cols);
+        for (int i = 0; i < this.rows; i++) {
+            for (int j = 0; j < this.cols; j++) {
+                result.setElement(i, j, this.nums[i][j].subtract(another.getElement(i, j)));
+            }
+        }
+        return result;
+    }
+
     public void print() {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
