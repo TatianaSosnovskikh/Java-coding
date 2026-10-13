@@ -67,6 +67,23 @@ public class Matrix {
         return result;
     }
 
+    public Matrix multiply(Matrix another) {
+        if (this.cols != another.getRows()) {
+            throw new IllegalArgumentException("Не совпадает количество столбцов с количеством строк!");
+        }
+        Matrix result = new Matrix(this.rows, another.getCols());
+        for (int i = 0; i < this.rows; i++) {
+            for (int j = 0; j < another.getCols(); j++) {
+                Complex_number sum = new Complex_number();
+                for (int k = 0; k < this.cols; k++) {
+                    sum = sum.add(this.nums[i][k].multiply(another.getElement(k, j)));
+                }
+                result.setElement(i, j, sum);
+            }
+        }
+        return result;
+    }
+
     public void print() {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
