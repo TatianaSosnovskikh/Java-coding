@@ -40,4 +40,13 @@ public class Matrix {
         }
         return result;
     }
+
+    public void print() {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                System.out.print("[" + nums[i][j] + "]\t");
+            }
+            System.out.println();
+        }
+    }
 }

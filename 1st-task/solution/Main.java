@@ -6,6 +6,6 @@ public class Main {
         mat1.setElement(1, 2, num1);
         Matrix mat2 = mat1.transpose();
 
-        System.out.println(mat2.getElement(2, 1).toString());
+        mat2.print();
     }
 }
