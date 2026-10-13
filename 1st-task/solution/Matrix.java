@@ -30,4 +30,14 @@ public class Matrix {
     public Complex_number getElement(int row, int col) {
         return this.nums[row][col];
     }
+
+    public Matrix transpose() {
+        Matrix result = new Matrix(this.cols, this.rows);
+        for (int i = 0; i < this.rows; i++) {
+            for (int j = 0; j < this.cols; j++) {
+                result.setElement(j, i, this.nums[i][j]);
+            }
+        }
+        return result;
+    }
 }
