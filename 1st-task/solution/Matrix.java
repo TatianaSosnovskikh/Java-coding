@@ -22,4 +22,12 @@ public class Matrix {
     public int getCols() {
         return cols;
     }
+
+    public void setElement(int row, int col, Complex_number data) {
+        this.nums[row][col] = data;
+    }
+
+    public Complex_number getElement(int row, int col) {
+        return this.nums[row][col];
+    }
 }
