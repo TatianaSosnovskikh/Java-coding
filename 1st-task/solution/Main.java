@@ -44,6 +44,10 @@ public class Main {
                         System.out.println("Ошибка! Выберите из существующих операций!");
                 }
 
+            } catch (IllegalArgumentException e) {
+                System.out.println("Ошибка: " + e.getMessage() + "\n");
+            } catch (ArithmeticException e) {
+                System.out.println("Ошибка: " + e.getMessage() + "\n");
             } catch (Exception e) {
                 System.out.println("Ошибка в вводе данных! Повторите попытку!");
                 scanner.nextLine();
