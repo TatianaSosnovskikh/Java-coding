@@ -101,17 +101,17 @@ public class Matrix {
         }
         Complex_number det = new Complex_number();
         for (int i = 0; i < n; i++) {
-            Complex_number[][] Minor = new Complex_number[n - 1][n - 1];
+            Complex_number[][] minor = new Complex_number[n - 1][n - 1];
             for (int j = 1; j < n; j++) {
                 int subCol = 0;
                 for (int k = 0; k < n; k++) {
                     if (k != i) {
-                        Minor[j - 1][subCol++] = matrix[j][k];
+                        minor[j - 1][subCol++] = matrix[j][k];
                     }
                 }
             }
             Complex_number sign = (i % 2 == 0) ? new Complex_number(1, 0) : new Complex_number(-1, 0);
-            Complex_number tail = matrix[0][i].multiply(sign).multiply(calcDeterminant(Minor));
+            Complex_number tail = matrix[0][i].multiply(sign).multiply(calcDeterminant(minor));
             det = det.add(tail);
         }
         return det;
@@ -125,21 +125,21 @@ public class Matrix {
         Matrix extra = new Matrix(this.rows, this.cols);
         for (int i = 0; i < this.rows; i++) {
             for (int j = 0; j < this.cols; j++) {
-                Complex_number[][] Minor = new Complex_number[this.rows - 1][this.cols - 1];
+                Complex_number[][] minor = new Complex_number[this.rows - 1][this.cols - 1];
                 int minorR = 0;
                 for (int r = 0; r < this.rows; r++) {
                     if (r != i) {
                         int minorC = 0;
                         for (int c = 0; c < this.cols; c++) {
                             if (c != j) {
-                                Minor[minorR][minorC++] = this.nums[r][c];
+                                minor[minorR][minorC++] = this.nums[r][c];
                             }
                         }
                         minorR++;
                     }
                 }
                 Complex_number sign = ((i + j) % 2 == 0) ? new Complex_number(1, 0) : new Complex_number(-1, 0);
-                extra.setElement(i, j, sign.multiply(calcDeterminant(Minor)));
+                extra.setElement(i, j, sign.multiply(calcDeterminant(minor)));
             }
         }
         Matrix transposedExtra = extra.transpose();
@@ -152,7 +152,7 @@ public class Matrix {
         return result;
     }
 
-    public Matrix divine(Matrix another) {
+    public Matrix divide(Matrix another) {
         return this.multiply(another.inverse());
     }
 

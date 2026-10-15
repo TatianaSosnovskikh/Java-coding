@@ -14,7 +14,7 @@ public class Main {
         mat1.setElement(2, 0, num3);
         mat1.setElement(2, 1, num2);
         mat1.setElement(2, 2, num3);
-        Matrix mat2 = mat1.divine(mat1);
+        Matrix mat2 = mat1.divide(mat1);
 
         mat2.print();
     }
