@@ -1,21 +1,30 @@
+import java.util.Scanner;
+
 public class Main {
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Matrix mat1 = new Matrix(3, 3);
-        Complex_number num1 = new Complex_number(3.0, 5.0);
-        Complex_number num2 = new Complex_number(7.0, 5.0);
-        Complex_number num3 = new Complex_number(0.0, 0.0);
-        mat1.setElement(0, 0, num1);
-        mat1.setElement(0, 1, num1);
-        mat1.setElement(0, 2, num1);
-        mat1.setElement(1, 0, num2);
-        mat1.setElement(1, 1, num2);
-        mat1.setElement(1, 2, num3);
-        mat1.setElement(2, 0, num3);
-        mat1.setElement(2, 1, num2);
-        mat1.setElement(2, 2, num3);
-        Matrix mat2 = mat1.divide(mat1);
+        while (true) {
+            try {
+                System.out.println("Выберите операцию для комплексных матриц:");
+                System.out.println("1 - Сложить 2 матрицы");
+                System.out.println("2 - Вычесть из одной матрицы другую");
+                System.out.println("3 - Перемножить 2 матрицы");
+                System.out.println("4 - Разделить одну матрицу на другую");
+                System.out.println("5 - Транспонировать матрицу");
+                System.out.println("6 - Найти определитель матрицы");
+                System.out.println("0 - Выйти из программы");
 
-        mat2.print();
+                int cm = scanner.nextInt();
+
+                if (cm == 0) {
+                    System.out.println("Работа программы завершена\n");
+                    break;
+                }
+            } catch (Exception e) {
+                System.out.println("Ошибка в вводе данных! Повторите попытку!");
+                scanner.nextLine();
+            }
+        }
     }
 }
